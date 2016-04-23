@@ -1,11 +1,14 @@
 require 'rails_helper'
 
 RSpec.describe Question, type: :model do
-  let(:question) { Question.create!(title: "New Question Title", body: "New Question Body", resolved: false) }
-
-  describe "attributes" do
-    it "has title and body attributes" do
-      expect(question).to have_attributes(title: "New Question Title", body: "New Question Body", resolved: false)
-    end
+  
+  describe "attributes" do # Documentation for Shoulda Matchers http://matchers.shoulda.io/docs/v3.1.1/
+    it { should have_db_column(:body).of_type(:text) }
+    it { should have_db_column(:title).of_type(:string) }
+    it { should have_db_column(:resolved).of_type(:boolean) }
+  end
+  
+  describe 'associations' do
+    it { should have_many(:answers) }
   end
 end
