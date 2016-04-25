@@ -17,6 +17,13 @@ posts = Post.all
   )
 end
 
+Post.find_or_create_by(
+  title: 'GoT s6e1',
+  body: 'So what did everybody think?'
+  )
+
+Comment.find_or_create_by(post: Post.find_by(title: 'GoT s6e1'), body: 'Hodor!')
+
 puts "Seed finished"
 puts "#{Post.count} posts created"
 puts "#{Comment.count} comments created"
