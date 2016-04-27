@@ -7,16 +7,14 @@ require 'random_data'
     )
 end
 posts = Post.all
+puts "#{Post.count} posts created"
 
-# Create Comments
-# #3
 100.times do
   Comment.create!(
     post: posts.sample,
     body: RandomData.random_paragraph
   )
 end
+puts "#{Comment.count} comments created"
 
 puts "Seed finished"
-puts "#{Post.count} posts created"
-puts "#{Comment.count} comments created"
