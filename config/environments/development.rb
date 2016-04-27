@@ -38,4 +38,12 @@ Rails.application.configure do
 
   # Raises error for missing translations
   # config.action_view.raise_on_missing_translations = true
+  
+  #Better Errors white list unusual IP
+  if ENV['C9_IP']
+    for i in (1..250)
+      BetterErrors::Middleware.allow_ip! "10.240.0.#{i.to_s}"
+    end
+  end
+
 end
