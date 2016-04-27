@@ -14,6 +14,7 @@ end
 
 group :development, :test do
   gem 'rspec-rails', '~> 3.0'
+  gem 'shoulda-matchers', '~> 3.1' #Adds shoulda matchers for simple documenting tests
 end
 
 # Use SCSS for stylesheets
