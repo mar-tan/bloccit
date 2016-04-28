@@ -7,6 +7,7 @@ require 'random_data'
     )
 end
 posts = Post.all
+puts "#{Post.count} posts created"
 
 # Create Comments
 # #3
@@ -16,7 +17,15 @@ posts = Post.all
     body: RandomData.random_paragraph
   )
 end
+puts "#{Comment.count} comments created"
+
+50.times do
+  Advertisement.create!(
+    title: RandomData.random_sentence,
+    body: RandomData.random_paragraph,
+    price: RandomData.random_price
+  )
+end
+puts "#{Advertisement.count} advertisements created"
 
 puts "Seed finished"
-puts "#{Post.count} posts created"
-puts "#{Comment.count} comments created"
