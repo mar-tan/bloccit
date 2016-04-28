@@ -2,7 +2,7 @@ require 'rails_helper'
 
 RSpec.describe AdvertisementsController, type: :controller do
 
-  let(:my_advertisement) { Advertisement.create!(title: RandomData.random_sentence, body: RandomData.random_paragraph, price: RandomData.random_number) }
+  let(:my_advertisement) { Advertisement.create!(title: RandomData.random_sentence, body: RandomData.random_paragraph, price: RandomData.random_price) }
 
   describe "GET #index" do
     it "returns http success" do
@@ -12,7 +12,7 @@ RSpec.describe AdvertisementsController, type: :controller do
 
     it "assigns [my_advertisement] to @advertisements" do
       get :index
-      expect(assigns(:advertisement)).to eq([my_advertisement])
+      expect(assigns(:advertisements)).to eq([my_advertisement])
     end
   end
 
@@ -51,16 +51,16 @@ RSpec.describe AdvertisementsController, type: :controller do
 
   describe "POST create" do
     it "increases the number of Advertisement by 1" do
-      expect{advertisement :create, advertisement: {title: RandomData.random_sentence, body: RandomData.random_paragraph}}.to change(Advertisement,:count).by(1)
+      expect{post :create, advertisement: {title: RandomData.random_sentence, body: RandomData.random_paragraph, price: RandomData.random_price}}.to change(Advertisement,:count).by(1)
     end
 
     it "assigns the new advertisement to @advertisement" do
-      advertisement :create, advertisement: {title: RandomData.random_sentence, body: RandomData.random_paragraph}
+      post :create, advertisement: {title: RandomData.random_sentence, body: RandomData.random_paragraph, price: RandomData.random_price}
       expect(assigns(:advertisement)).to eq Advertisement.last
     end
 
     it "redirects to the new advertisement" do
-      advertisement :create, advertisement: {title: RandomData.random_sentence, body: RandomData.random_paragraph}
+      post :create, advertisement: {title: RandomData.random_sentence, body: RandomData.random_paragraph, price: RandomData.random_price}
       expect(response).to redirect_to Advertisement.last
     end
   end
