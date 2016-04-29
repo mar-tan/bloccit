@@ -1,11 +1,13 @@
 require 'rails_helper'
 
 RSpec.describe Post, type: :model do
-  let(:post) { Post.create!(title: "New Post Title", body: "New Post Body") }
 
-  describe "attributes" do
-    it "has title and body attributes" do
-      expect(post).to have_attributes(title: "New Post Title", body: "New Post Body")
-    end
+  describe "attributes" do # Documentation for Shoulda Matchers http://matchers.shoulda.io/docs/v3.1.1/
+    it { should have_db_column(:body).of_type(:text) }
+    it { should have_db_column(:title).of_type(:string) }
+  end
+  
+  describe 'associations' do
+    it { should have_many(:comments) }
   end
 end
