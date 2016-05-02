@@ -9,6 +9,10 @@ class PostsController < ApplicationController
     @post = Post.new
   end
 
+  def edit
+    @post = Post.find(params[:id])
+  end
+
   def create
     @post = Post.new
     @post.title = params[:post][:title]
@@ -23,10 +27,6 @@ class PostsController < ApplicationController
       flash.now[:alert] = "There was an error saving the post. Please try again."
       render :new
     end
-  end
-
-  def edit
-    @post = Post.find(params[:id])
   end
 
   def update
