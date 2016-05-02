@@ -14,9 +14,10 @@ end
 
 group :development, :test do
   gem 'rspec-rails', '~> 3.0'
+  gem 'shoulda'
   gem 'shoulda-matchers', '~> 3.1' #Adds shoulda matchers for simple documenting tests
   gem 'pry-rails' #Rails console opens up using Pry enhanced REPL
-  gem 'pry-byebug' #Pry bindings have byebug debugger functionality 
+  gem 'pry-byebug' #Pry bindings have byebug debugger functionality
   gem 'better_errors' #Better error pages in the browser with REPL
   gem 'binding_of_caller' #Required for some of the Better Error page functionality
 end
