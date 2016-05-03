@@ -4,7 +4,7 @@ RSpec.describe SponsoredPostsController, type: :controller do
 
   let(:my_topic) { Topic.create!(name:  RandomData.random_sentence, description: RandomData.random_paragraph) }
 
-  let(:my_sponsored_post) { my_topic.sponsoredposts.create!(title: RandomData.random_sentence, body: RandomData.random_paragraph, price: RandomData.random_price) }
+  let(:my_sponsored_post) { my_topic.sponsored_posts.create!(title: RandomData.random_sentence, body: RandomData.random_paragraph, price: RandomData.random_price) }
 
   describe "GET #show" do
     it "returns http success" do
@@ -82,16 +82,16 @@ RSpec.describe SponsoredPostsController, type: :controller do
 #     it "updates post with expected attributes" do
 #       new_title = RandomData.random_sentence
 #       new_body = RandomData.random_paragraph
-#
-#       put :update, topic_id: my_topic.id, id: my_post.id, post: {title: new_title, body: new_body}
-#
-#       updated_post = assigns(:post)
-#       expect(updated_post.id).to eq my_post.id
-#       expect(updated_post.title).to eq new_title
-#       expect(updated_post.body).to eq new_body
-#     end
-#
-#     it "redirects to the updated post" do
+    #
+    #   put :update, topic_id: my_topic.id, id: my_post.id, post: {title: new_title, body: new_body}
+    #
+    #   updated_post = assigns(:post)
+    #   expect(updated_post.id).to eq my_post.id
+    #   expect(updated_post.title).to eq new_title
+    #   expect(updated_post.body).to eq new_body
+    # end
+    #
+    # it "redirects to the updated post" do
 #       new_title = RandomData.random_sentence
 #       new_body = RandomData.random_paragraph
 #
