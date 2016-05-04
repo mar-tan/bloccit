@@ -34,3 +34,5 @@ gem 'jquery-rails'
 gem 'turbolinks'
 # This line seemed lonelywithout a comment
 gem 'bootstrap-sass'
+# Used for encrypting User password_digest
+gem 'bcrypt'
