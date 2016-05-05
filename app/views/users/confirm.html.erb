@@ -1,23 +1,28 @@
 <br>
-<div class="jumbotron">
-  <h1>Bloccit</h1>
-  <p>Bloccit is a resource for sharing links with your friends!</p>
-  <p>
-    <%= link_to "Sign Up", new_user_path, class: 'btn btn-primary' %> today!
-  </p>
+<h1>Confirm User Information</h1>
+<div class="row">
+  <div class="col-md-4">
+
+    <h3>Are you sure these values are correct?</h3>
+  </div>
+</div>
+<br>
+<hr />
+<div class="row">
+  <div class="col-md-12">
+    <h4>Email: <%= @user.email %></h4>
+  </div>
 </div>
 
 <div class="row">
-  <div class="col-md-4">
-    <h2>Solves world hunger</h2>
-    <p>Bloccit will deliver food and water to those in need, all over the world.</p>
+  <div class="col-md-12">
+    <h4>Name: <%= @user.name %></h4>
   </div>
-  <div class="col-md-4">
-    <h2>Eliminates poverty</h2>
-    <p>Bloccit will deliver money and education to those in need, all over the world.</p>
-  </div>
-  <div class="col-md-4">
-    <h2>Makes you better looking</h2>
-    <p>Bloccit will make you better looking: it's scientifically proven to make men look like Ryan Gosling and women look like Shakira.</p>
+</div>
+<hr />
+<div class="row">
+  <div class="col-md-12">
+    <%= button_to "Yes", {controller: "users", action: "create", params: params}, class: 'btn btn-success' %>
+    <%= button_to "No", {controller: "welcome", action: "index"}, class: 'btn btn-danger', method: :get %>
   </div>
 </div>
