@@ -1,5 +1,6 @@
 class User < ActiveRecord::Base
   has_many :posts
+  has_many :comments
   before_save :parse_email
   before_save { self.role ||= :member }
 
