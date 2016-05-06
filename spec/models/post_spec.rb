@@ -8,6 +8,6 @@ RSpec.describe Post, type: :model do
   end
   
   describe 'associations' do
-    it { should have_many(:comments) }
+    it { should have_many(:comments).dependent(:destroy) }
   end
 end
