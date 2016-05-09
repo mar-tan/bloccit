@@ -23,11 +23,10 @@ RSpec.describe Label, type: :model do
   end
 
   describe ".update_labels" do
-    it "takes a comma delimited string and returns an array of Labels"
+    it "takes a comma delimited string and returns an array of Labels" do
       labels = "#{label.name}, #{label2.name}"
       labels_as_a = [label,label2]
       expect(Label.update_labels(labels)).to eq(labels_as_a)
     end
   end
-
 end
