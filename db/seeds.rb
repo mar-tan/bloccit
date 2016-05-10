@@ -23,15 +23,17 @@ end
 posts = Post.all
 puts "#{Post.count} posts created"
 
-50.times do
+50.times do |i|
     SponsoredPost.create!(
       topic: topics.sample,
-      title: RandomData.random_sentence,
-      body: RandomData.random_paragraph,
+      title: "#{i}_" + RandomData.random_sentence,
+      body: "#{i}_" + RandomData.random_paragraph,
       price: RandomData.random_price
     )
 end
-sponsored_posts = SponsoredPost.all
+
+sponsoredposts = SponsoredPost.all
+puts "#{SponsoredPost.count} sponsored posts created"
 
 # Create Comments
 100.times do |i|
