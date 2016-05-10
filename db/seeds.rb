@@ -4,11 +4,13 @@ require 'random_data'
 15.times do
   Topic.create!(
     name:         RandomData.random_sentence,
-    description:  RandomData.random_paragraph
+    description:  RandomData.random_paragraph,
+    public: rand(1..4) != 1 
   )
 end
 topics = Topic.all
 puts "#{Topic.count} topics created"
+puts "#{Topic.where(public: false).count} private topics created"
 
 # Create Posts
 50.times do |i|
