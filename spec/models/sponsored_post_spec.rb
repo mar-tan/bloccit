@@ -1,19 +1,14 @@
 require 'rails_helper'
 
 RSpec.describe SponsoredPost, type: :model do
-  let(:title) { RandomData.random_sentence }
-  let(:body) { RandomData.random_paragraph }
-  let(:price) { RandomData.random_price }
-  let(:name) { RandomData.random_sentence }
-  let(:description) { RandomData.random_paragraph }
-  let(:topic) { Topic.create!(name: name, description: description) }
-  let(:sponsored_post) { topic.sponsored_posts.create!(title: title, body: body, price: price) }
 
-  it { is_expected.to belong_to(:topic) }
-
-  describe "attributes" do
-    it "has title and body and price attributes" do
-      expect(sponsored_post).to have_attributes(title: title, body: body, price: price)
-    end
+  describe "attributes" do # Documentation for Shoulda Matchers http://matchers.shoulda.io/docs/v3.1.1/
+    it { should have_db_column(:body).of_type(:text) }
+    it { should have_db_column(:title).of_type(:string) }
+    it { should have_db_column(:price).of_type(:integer) }
+  end
+  
+  describe 'associations' do
+    it { should belong_to(:topic) }
   end
 end
