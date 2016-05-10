@@ -14,30 +14,35 @@ users = User.all
 15.times do
   Topic.create!(
     name:         RandomData.random_sentence,
-    description:  RandomData.random_paragraph
+    description:  RandomData.random_paragraph,
+    public: rand(1..4) != 1 
   )
 end
 topics = Topic.all
+puts "#{Topic.count} topics created"
+puts "#{Topic.where(public: false).count} private topics created"
 
 # Create Posts
-50.times do
+50.times do |i|
   Post.create!(
     user: users.sample,
     topic: topics.sample,
-    title: RandomData.random_sentence,
-    body: RandomData.random_paragraph
+    title: "#{i}_" + RandomData.random_sentence,
+    body: "#{i}_" + RandomData.random_paragraph
   )
 end
 posts = Post.all
+puts "#{Post.count} posts created"
 
 # Create Comments
-100.times do
+100.times do |i|
   Comment.create!(
     user: users.sample,
     post: posts.sample,
-    body: RandomData.random_paragraph
+    body: "#{i}_" + RandomData.random_paragraph
   )
 end
+puts "#{Comment.count} comments created"
 
 # Create an admin users
 admin = User.create!(
@@ -55,7 +60,4 @@ member = User.create!(
 )
 
 puts "Seed finished"
-puts "#{User.count} users created"
-puts "#{Topic.count} topics created"
-puts "#{Post.count} posts created"
-puts "#{Comment.count} comments created"
+
