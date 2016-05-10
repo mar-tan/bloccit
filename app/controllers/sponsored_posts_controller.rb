@@ -1,28 +1,28 @@
 class SponsoredPostsController < ApplicationController
   def show
-    @sponsoredpost = SponsoredPost.find(params[:id])
+    @sponsored_post = SponsoredPost.find(params[:id])
   end
 
   def new
     @topic = Topic.find(params[:topic_id])
-    @sponsoredpost = SponsoredPost.new
+    @sponsored_post = SponsoredPost.new
   end
 
   def edit
-    @sponsoredpost = SponsoredPost.find(params[:id])
+    @sponsored_post = SponsoredPost.find(params[:id])
   end
 
   def create
-    @sponsoredpost = SponsoredPost.new
-    @sponsoredpost.title = params[:sponsoredpost][:title]
-    @sponsoredpost.body = params[:sponsoredpost][:body]
-    @sponsoredpost.price = params[:sponsoredpost][:price]
+    @sponsored_post = SponsoredPost.new
+    @sponsored_post.title = params[:sponsored_post][:title]
+    @sponsored_post.body = params[:sponsored_post][:body]
+    @sponsored_post.price = params[:sponsored_post][:price]
     @topic = Topic.find(params[:topic_id])
-    @sponsoredpost.topic = @topic
+    @sponsored_post.topic = @topic
 
-    if @sponsoredpost.save
+    if @sponsored_post.save
       flash[:notice] = "Sponsored Post was saved successfully."
-      redirect_to [@topic, @sponsoredpost]
+      redirect_to [@topic, @sponsored_post]
     else
       flash.now[:alert] = "There was an error saving the sponsored post. Please try again."
       render :new
@@ -30,14 +30,14 @@ class SponsoredPostsController < ApplicationController
   end
 
   def update
-    @sponsoredpost = SponsoredPost.find(params[:id])
-    @sponsoredpost.title = params[:sponsoredpost][:title]
-    @sponsoredpost.body = params[:sponsoredpost][:body]
-    @sponsoredpost.price = params[:sponsoredpost][:price]
+    @sponsored_post = SponsoredPost.find(params[:id])
+    @sponsored_post.title = params[:sponsored_post][:title]
+    @sponsored_post.body = params[:sponsored_post][:body]
+    @sponsored_post.price = params[:sponsored_post][:price]
 
-    if @sponsoredpost.save
+    if @sponsored_post.save
       flash[:notice] = "Post was updated successfully."
-      redirect_to [@sponsoredpost.topic, @sponsoredpost]
+      redirect_to [@sponsored_post.topic, @sponsored_post]
     else
       flash.now[:alert] = "There was an error saving the post. Please try again."
       render :edit
@@ -45,11 +45,11 @@ class SponsoredPostsController < ApplicationController
   end
 
   def destroy
-    @sponsoredpost = SponsoredPost.find(params[:id])
+    @sponsored_post = SponsoredPost.find(params[:id])
 
-    if @sponsoredpost.destroy
-      flash[:notice] = "\"#{@sponsoredpost.title}\" was deleted successfully."
-      redirect_to @sponsoredpost.topic
+    if @sponsored_post.destroy
+      flash[:notice] = "\"#{@sponsored_post.title}\" was deleted successfully."
+      redirect_to @sponsored_post.topic
     else
       flash.now[:alert] = "There was an error deleting the sponsored post."
       render :show
