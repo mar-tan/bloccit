@@ -1,20 +1,14 @@
 require 'rails_helper'
 
 RSpec.describe Topic, type: :model do
-  let(:name) { RandomData.random_sentence }
-  let(:description) { RandomData.random_paragraph }
-  let(:public) { true }
-  let(:topic) { Topic.create!(name: name, description: description) }
 
-  it { is_expected.to have_many(:posts) }
-
-  describe "attributes" do
-    it "has name, description, and public attributes" do
-      expect(topic).to have_attributes(name: name, description: description, public: public)
-    end
-
-    it "is public by default" do
-      expect(topic.public).to be(true)
-    end
+  describe "attributes" do # Documentation for Shoulda Matchers http://matchers.shoulda.io/docs/v3.1.1/
+    it { should have_db_column(:name).of_type(:string) }
+    it { should have_db_column(:description).of_type(:text) }
+    it { should have_db_column(:public).of_type(:boolean).with_options({default: true, null: false}) }
+  end
+  
+  describe 'associations' do
+    it { should have_many(:posts).dependent(:destroy) }
   end
 end
