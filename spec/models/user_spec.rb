@@ -27,8 +27,11 @@ RSpec.describe User, type: :model do
     it { is_expected.to validate_length_of(:password).is_at_least(6) }
   end
 
-  # describe "username capitalization" do
-  #   let()
-  # end
+  describe 'callbacks' do
+    it "should format at the user's name" do
+      @user = User.new(name: "bloc user", email: "bloc@example.com", password: "hellworld", password_confirmation: "hellworld") 
+      expect { @user.save }.to change{@user.name}.from("bloc user").to("Bloc User")
+    end
+  end
 
 end
