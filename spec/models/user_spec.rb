@@ -1,5 +1,4 @@
 require 'rails_helper'
-
 RSpec.describe User, type: :model do
 
   describe "roles" do
@@ -49,12 +48,12 @@ RSpec.describe User, type: :model do
     it { should have_db_column(:email).of_type(:string) }
     it { should have_db_column(:password_digest).of_type(:string) }
   end
-  
+
   describe 'associations' do
     it { is_expected.to have_many(:posts) }
     it { is_expected.to have_many(:comments) }
   end
-  
+
   describe 'validations' do
     # name
     it { is_expected.to validate_presence_of(:name) }
