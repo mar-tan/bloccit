@@ -7,9 +7,9 @@ class User < ActiveRecord::Base
             presence: true,
             uniqueness: { case_sensitive: false },
             length: { minimum: 3, maximum: 254 }
+            
+  before_save { email = email.downcase if email.present? }
+
   has_secure_password
 
-  def parse_email
-    self.email.downcase! if self.email
-  end
 end
