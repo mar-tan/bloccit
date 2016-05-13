@@ -1,5 +1,5 @@
 class User < ActiveRecord::Base
-  enum role: [:member, :admin]
+  enum role: [:member, :moderator, :admin]
 
   has_many :posts
 
