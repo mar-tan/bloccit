@@ -10,6 +10,7 @@ RSpec.describe Post, type: :model do
   describe 'associations' do
     it { should have_many(:comments).dependent(:destroy) }
     it { should belong_to(:topic) }
+    it { is_expected.to belong_to(:user) }
   end
   
   describe 'validations' do
@@ -21,6 +22,8 @@ RSpec.describe Post, type: :model do
     it { should validate_length_of(:body).is_at_least(20) }
     # topic
     it { should validate_presence_of(:topic) }
+    # user
+    it { is_expected.to validate_presence_of(:user) }
   end
 
   it { is_expected.to have_many(:labelings) }
