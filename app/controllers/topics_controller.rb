@@ -15,7 +15,7 @@ class TopicsController < ApplicationController
     @topic = Topic.new
     @topic.name = params[:topic][:name]
     @topic.description = params[:topic][:description]
-    @topic.public = params[:topic][:public]
+    @topic.public = params[:topic][:public] if params[:topic][:public].present?
 
     if @topic.save
       flash[:notice] = "Topic was saved successfully."
@@ -35,7 +35,7 @@ class TopicsController < ApplicationController
 
     @topic.name = params[:topic][:name]
     @topic.description = params[:topic][:description]
-    @topic.public = params[:topic][:public]
+    @topic.public = params[:topic][:public] if params[:topic][:public].present?
 
     if @topic.save
        flash[:notice] = "Topic was updated successfully."
