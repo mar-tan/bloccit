@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20160504125418) do
+ActiveRecord::Schema.define(version: 20160510125731) do
 
   create_table "comments", force: :cascade do |t|
     t.text     "body"
@@ -34,7 +34,7 @@ ActiveRecord::Schema.define(version: 20160504125418) do
 
   create_table "topics", force: :cascade do |t|
     t.string   "name"
-    t.boolean  "public",      default: true
+    t.boolean  "public",      default: true, null: false
     t.text     "description"
     t.datetime "created_at",                 null: false
     t.datetime "updated_at",                 null: false
