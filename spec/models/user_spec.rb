@@ -7,7 +7,7 @@ RSpec.describe User, type: :model do
     it { should have_db_column(:email).of_type(:string) }
     it { should have_db_column(:password_digest).of_type(:string) }
     it { should have_db_column(:role).of_type(:integer).with_options({default: 0, null: false}) }
-    it { should define_enum_for(:role).with([:member, :admin]) }
+    it { should define_enum_for(:role).with([:member, :moderator, :admin]) }
   end
 
   describe 'associations' do
