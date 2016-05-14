@@ -2,6 +2,7 @@ class User < ActiveRecord::Base
   enum role: [:member, :admin]
 
   has_many :posts
+  has_many :comments
 
 
   validates :name, length: { minimum: 1, maximum: 100 }, presence: true
