@@ -15,7 +15,7 @@ users = User.all
   Topic.create!(
     name:         RandomData.random_sentence,
     description:  RandomData.random_paragraph,
-    public: rand(1..4) != 1 
+    public: rand(1..4) != 1
   )
 end
 topics = Topic.all
@@ -60,4 +60,3 @@ member = User.create!(
 )
 
 puts "Seed finished"
-
