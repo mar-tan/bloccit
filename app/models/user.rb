@@ -15,6 +15,7 @@ class User < ActiveRecord::Base
             inclusion: { in: roles.keys }
 
   before_save { email = email.downcase if email.present? }
+  before_save { self.role ||= :member }
 
   has_secure_password
 
