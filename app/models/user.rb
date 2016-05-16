@@ -1,8 +1,9 @@
 class User < ActiveRecord::Base
   enum role: [:member, :admin]
 
-  has_many :posts
-  has_many :comments
+  has_many :posts, dependent: :destroy
+  has_many :comments, dependent: :destroy
+  has_many :votes, dependent: :destroy
 
   validates :name, length: { minimum: 1, maximum: 100 }, presence: true
   validates :password, presence: true, length: {minimum: 6}, unless: :password_digest

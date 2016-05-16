@@ -24,15 +24,19 @@ puts "#{Topic.where(public: false).count} private topics created"
 
 # Create Posts
 50.times do |i|
-  Post.create!(
+  post = Post.create!(
     user: users.sample,
     topic: topics.sample,
     title: "#{i}_" + RandomData.random_sentence,
     body: "#{i}_" + RandomData.random_paragraph
   )
+
+  post.update_attribute(:created_at, rand(10.minutes ..1.year).ago)
+  rand(1..5).times { post.votes.create!(value: [-1, 1].sample, user: users.sample) }
 end
 posts = Post.all
 puts "#{Post.count} posts created"
+puts "#{Vote.count} votes created"
 
 # Create Comments
 100.times do |i|
