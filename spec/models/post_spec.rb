@@ -37,6 +37,9 @@ RSpec.describe Post, type: :model do
         expect( post.points ).to eq(@up_votes - @down_votes)
       end
     end
+
+
+
   end
 
   describe "#update_rank" do
@@ -66,6 +69,11 @@ RSpec.describe Post, type: :model do
     end
   end
 
+  # describe "create_vote callback" do
+  #   it "triggers create_vote after post create" do
+  #   end
+  # end
+
   describe 'associations' do
     it { should have_many(:comments).dependent(:destroy) }
     it { is_expected.to have_many(:votes)}
@@ -91,6 +99,5 @@ RSpec.describe Post, type: :model do
 
   it { is_expected.to belong_to(:topic) }
   it { is_expected.to belong_to(:user) }
-
 
 end
