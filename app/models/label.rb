@@ -4,7 +4,7 @@ class Label < ActiveRecord::Base
   has_many :posts, through: :labelings, source: :labelable, source_type: :Post
 
   def self.update_labels(label_string)
-    return label.none if label_string.blank?
+    return Label.none if label_string.blank?
 
     label_string.split(",").map do |label|
       Label.find_or_create_by(name: label.strip)
