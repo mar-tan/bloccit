@@ -51,8 +51,8 @@ RSpec.describe Post, type: :model do
       end
 
       it "calls #create_vote when a post is created" do
-        post = topic.posts.new(title: RandomData.random_sentence, body: RandomData.random_sentence, user: user)
-        expect(post).to receive(:create_vote)
+        @post = topic.posts.create!(title: RandomData.random_sentence, body: RandomData.random_sentence, user: user)
+        expect(@post).to receive(:create_vote)
       end
 
       it "associates the vote with the owner of the post" do
@@ -60,7 +60,6 @@ RSpec.describe Post, type: :model do
       end
     end
   end
-
 
   describe "#update_rank" do
     let(:user) { User.create!(name: "Bloccit User", email: "user@bloccit.com", password: "helloworld") }
