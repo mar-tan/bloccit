@@ -71,6 +71,8 @@ RSpec.describe Post, type: :model do
     it { is_expected.to have_many(:votes)}
     it { should belong_to(:topic) }
     it { is_expected.to belong_to(:user) }
+    it { is_expected.to have_many(:labelings) }
+    it { is_expected.to have_many(:labels).through(:labelings) }
   end
 
   describe 'validations' do
