@@ -69,6 +69,7 @@ RSpec.describe Post, type: :model do
   describe 'associations' do
     it { should have_many(:comments).dependent(:destroy) }
     it { is_expected.to have_many(:votes)}
+    it { is_expected.to have_many(:favorites) }
     it { should belong_to(:topic) }
     it { is_expected.to belong_to(:user) }
     it { is_expected.to have_many(:labelings) }
