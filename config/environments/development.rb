@@ -38,7 +38,8 @@ Rails.application.configure do
 
   # Raises error for missing translations
   # config.action_view.raise_on_missing_translations = true
-  
+  config.action_mailer.default_url_options = { host: 'localhost' }
+
   #Better Errors white list unusual IP
   if ENV['C9_IP']
     for i in (1..250)
