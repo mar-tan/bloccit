@@ -21,19 +21,25 @@ RSpec.describe Comment, type: :model do
     let(:topic) { create(:topic) }
     let(:user) { create(:user) }
     let(:post) { create(:post) }
+    # ASK ABOUT THIS: so, FavMailer.new_comment() not being called if using let(), but DOES get called if for-realzies in before-do
+    # => EXPLAIN!
     let(:comment) { Comment.create!(body: 'Comment Body', post: post, user: user) }
+
+    before do
+      @another_comment = Comment.new(body: 'Comment Body', post: post, user: user)
+    end
 
     it "sends an email to users who have favorited the post" do
       favorite = user.favorites.create(post: post)
-      expect(FavoriteMailer).to receive(:new_comment).with(user, post, comment).and_return(double(deliver_now: true))
+      expect(FavoriteMailer).to receive(:new_comment).with(user, post, @another_comment).and_return(double(deliver_now: true))
 
-      comment.save!
+      @another_comment.save!
     end
 
     it "does not send emails to users who haven't favorited the post" do
       expect(FavoriteMailer).not_to receive(:new_comment)
 
-      comment.save!
+      @another_comment.save!
     end
   end
 end
