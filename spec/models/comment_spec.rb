@@ -21,9 +21,10 @@ RSpec.describe Comment, type: :model do
     let(:topic) { create(:topic) }
     let(:user) { create(:user) }
     let(:post) { create(:post) }
+    let(:comment) { create(:comment) }
+
     # ASK ABOUT THIS: so, FavMailer.new_comment() not being called if using let(), but DOES get called if for-realzies in before-do
     # => EXPLAIN!
-    let(:comment) { Comment.create!(body: 'Comment Body', post: post, user: user) }
 
     before do
       @another_comment = Comment.new(body: 'Comment Body', post: post, user: user)
