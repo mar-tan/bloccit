@@ -8,6 +8,7 @@ class Label < ActiveRecord::Base
 
     label_string.split(",").map do |label|
       Label.find_or_create_by(name: label.strip)
+      # find_or_create_by(:label, name: label.strip)
     end
   end
 end

@@ -19,6 +19,8 @@ class PostsController < ApplicationController
 
     if @post.save
       @post.labels = Label.update_labels(params[:post][:labels])
+      @vote = current_user.votes.create(value: 1, post: @post)
+      # create(:vote)
       flash[:notice] = "Post was saved successfully."
       redirect_to [@topic, @post]
     else
