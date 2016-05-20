@@ -2,15 +2,19 @@ require 'rails_helper'
 
 RSpec.describe Post, type: :model do
 
-  describe 'attributes' do # Documentation for Shoulda Matchers http://matchers.shoulda.io/docs/v3.1.1/
-    it { should have_db_column(:body).of_type(:text) }
-    it { should have_db_column(:title).of_type(:string) }
+  describe 'attributes' do
+    let(:post) { create(:post) }
+
+    it "responds to title and body attributes" do
+      expect(post).to have_attributes(title: post.title, body: post.body)
+    end
+    # it { is_expected.to have_attributes(title: :title, body: :body) }
   end
 
   describe 'voting' do
-    let(:user) { User.create!(name: "Bloccit User", email: "user@bloccit.com", password: "helloworld") }
-    let(:topic) { Topic.create!(name: RandomData.random_sentence, description: RandomData.random_paragraph) }
-    let(:post) { topic.posts.create!(title: RandomData.random_sentence, body: RandomData.random_paragraph, user: user) }
+    let(:topic) { create(:topic) }
+    let(:user) { create(:user) }
+    let(:post) { create(:post) }
     # let(:comment) { Comment.create!(body: 'Comment Body', post: post, user: user) }
 
     before do
@@ -40,9 +44,9 @@ RSpec.describe Post, type: :model do
   end
 
   describe "#update_rank" do
-    let(:user) { User.create!(name: "Bloccit User", email: "user@bloccit.com", password: "helloworld") }
-    let(:topic) { Topic.create!(name: RandomData.random_sentence, description: RandomData.random_paragraph) }
-    let(:post) { topic.posts.create!(title: RandomData.random_sentence, body: RandomData.random_paragraph, user: user) }
+    let(:topic) { create(:topic) }
+    let(:user) { create(:user) }
+    let(:post) { create(:post) }
 
     before do
       post.votes.create!(value: 1)

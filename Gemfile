@@ -16,6 +16,8 @@ group :development, :test do
   gem 'rspec-rails', '~> 3.0'
   gem 'shoulda'
   gem 'shoulda-matchers', '~> 3.1' #Adds shoulda matchers for simple documenting tests
+  gem 'factory_girl_rails', '~> 4.0' #FactoryGirl allows us to build objects we can use for testing
+
   gem 'pry-rails' #Rails console opens up using Pry enhanced REPL
   gem 'pry-byebug' #Pry bindings have byebug debugger functionality
   gem 'better_errors' #Better error pages in the browser with REPL
