@@ -15,20 +15,9 @@
           <%= pluralize(@user.comments.count, 'comment') %>
         </small>
       </div>
+
+      <%= render partial: 'postscomments', locals: { user: @user } %>
+
     </div>
   </div>
 </div>
-
-<% if @user.posts %>
-  <h2>Posts</h2>
-  <%= render @user.posts %>
-<% else %>
-  <p><%= @user.name %> has not submitted any posts yet.</p>
-<% end %>
-
-<% if @user.comments %>
-  <h2>Comments</h2>
-  <%= render @user.comments %>
-<% else %>
-  <p><%= @user.name %> has not submitted any comments yet.</p>
-<% end %>

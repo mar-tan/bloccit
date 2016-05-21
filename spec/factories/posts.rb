@@ -4,7 +4,6 @@ FactoryGirl.define do
     body RandomData.random_paragraph
     topic
     user
-    labelings
     rank 0.0
   end
 end

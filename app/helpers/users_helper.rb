@@ -1,5 +1,13 @@
 module UsersHelper
-  # def alert_none_yet
-  #   <p><%= @user.name %> has not submitted any posts yet.</p>
-  # end
+  def has_posts?(user)
+    if @user.posts.count > 0
+      return true
+    end
+  end
+
+  def has_comments?(user)
+    if @user.comments.count > 0
+      return true
+    end
+  end
 end
