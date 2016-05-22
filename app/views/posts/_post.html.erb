@@ -1,6 +1,9 @@
-<div class="media">
-  <%= render partial: 'votes/voter', locals: { post: post } %>
+<div class="media post">
+  <div class="media-left">
+    <%= image_tag post.user.avatar_url(48), class: "gravatar" %>
+  </div>
   <div class="media-body">
+    <%= render partial: 'votes/voter', locals: { post: post } %>
     <h4 class="media-heading">
       <%= link_to post.title, topic_post_path(post.topic, post) %>
       <%= render partial: "labels/list", locals: { labels: post.labels } %>

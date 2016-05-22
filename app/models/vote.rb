@@ -6,8 +6,6 @@ class Vote < ActiveRecord::Base
   private
 
   def update_post
-    puts post
     post.update_rank
-    puts post
   end
 end

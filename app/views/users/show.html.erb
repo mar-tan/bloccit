@@ -8,6 +8,7 @@
         <%= image_tag avatar_url, class: 'media-object' %>
       </div>
       <% end %>
+
       <div class="media-body">
         <h2 class="media-heading"><%= @user.name %></h2>
         <small>
@@ -15,9 +16,14 @@
           <%= pluralize(@user.comments.count, 'comment') %>
         </small>
       </div>
-
-      <%= render partial: 'postscomments', locals: { user: @user } %>
-
     </div>
+  <br>
+    <%= render partial: 'posts', locals: { user: @user } %>
+  <br>
+    <%= render partial: 'comments', locals: { user: @user } %>
+  <br>
+    <% @user.favorites.each do |favorite| %>
+      <%= render favorite.post %>
+    <% end %>
   </div>
 </div>
