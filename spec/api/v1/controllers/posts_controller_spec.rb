@@ -7,17 +7,17 @@ require 'rails_helper'
 
   context "unauthenticated user" do
     it "PUT update returns http unauthenticated" do
-      put :update, id: my_post.id, post: {title: "Post Title", body: "There is a time and a place for messing with strings, and I feel that PUT updates are one of those times.", topic_id: my_topic.id, user_id: my_user.id }
+      put :update, topic_id: my_topic.id, id: my_post.id, post: {title: "Post Title", body: "There is a time and a place for messing with strings, and I feel that PUT updates are one of those times.", topic_id: my_topic.id, user_id: my_user.id }
       expect(response).to have_http_status(401)
     end
 
     it "POST create returns http unauthenticated" do
-      post :create, post: {title: "Test Post Title", body: "We couldn't be more thrilled with the results.  It's like Stanley's been living with us the entire time!", topic_id: my_topic.id, user_id: my_user.id }
+      post :create, topic_id: my_topic.id, post: {title: "Test Post Title", body: "We couldn't be more thrilled with the results.  It's like Stanley's been living with us the entire time!", topic_id: my_topic.id, user_id: my_user.id }
       expect(response).to have_http_status(401)
     end
 
     it "DELETE destroy returns http unauthenticated" do
-      delete :destroy, id: my_post.id
+      delete :destroy, topic_id: my_topic.id, id: my_post.id
       expect(response).to have_http_status(401)
     end
   end
@@ -29,17 +29,17 @@ require 'rails_helper'
     end
 
     it "PUT update returns http forbidden" do
-      put :update, id: my_post.id, post: {title: "Post Title", body: "There is a time and a place for messing with strings, and I feel that PUT updates are one of those times.", topic_id: my_topic.id, user_id: my_user.id }
+      put :update, topic_id: my_topic.id, id: my_post.id, post: {title: "Post Title", body: "There is a time and a place for messing with strings, and I feel that PUT updates are one of those times.", topic_id: my_topic.id, user_id: my_user.id }
       expect(response).to have_http_status(403)
     end
 
     it "POST create returns http forbidden" do
-      post :create, post: {title: "Test Post Title", body: "We couldn't be more thrilled with the results.  It's like Stanley's been living with us the entire time!", topic_id: my_topic.id, user_id: my_user.id }
+      post :create, topic_id: my_topic.id, post: {title: "Test Post Title", body: "We couldn't be more thrilled with the results.  It's like Stanley's been living with us the entire time!", topic_id: my_topic.id, user_id: my_user.id }
       expect(response).to have_http_status(403)
     end
 
     it "DELETE destroy returns http forbidden" do
-      delete :destroy, id: my_post.id
+      delete :destroy, topic_id: my_topic.id, id: my_post.id
       expect(response).to have_http_status(403)
     end
 
@@ -53,7 +53,7 @@ require 'rails_helper'
     end
 
     describe "PUT update" do
-      before { put :update, id: my_post.id, post: {title: @new_post.title, body: @new_post.body} }
+      before { put :update, topic_id: my_topic.id, id: my_post.id, post: {title: @new_post.title, body: @new_post.body} }
 
       it "returns http success" do
         expect(response).to have_http_status(:success)
@@ -70,7 +70,7 @@ require 'rails_helper'
     end
 
     describe "POST create" do
-      before { post :create, post: {title: @new_post.title, body: @new_post.body, topic_id: my_topic.id, user_id: my_user.id } }
+      before { post :create, topic_id: my_topic.id, post: {title: @new_post.title, body: @new_post.body, topic_id: my_topic.id, user_id: my_user.id } }
 
       it "returns http success" do
         expect(response).to have_http_status(:success)
@@ -88,7 +88,7 @@ require 'rails_helper'
     end
 
     describe "DELETE destroy" do
-      before { delete :destroy, id: my_post.id }
+      before { delete :destroy, topic_id: my_topic.id, id: my_post.id }
 
       it "returns http success" do
         expect(response).to have_http_status(:success)
